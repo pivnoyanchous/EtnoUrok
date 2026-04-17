@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pivnoy Anchous | Конструктор мероприятий | ЭтноУрок</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header class="header">
+        <div class="container header-container">
+            <div class="logo">
+                <i class="fa-solid fa-landmark-dome"></i>
+                <span>Pivnoy Anchous | ЭтноУрок</span>
+            </div>
+            <h1>Платформа по подготовке мероприятий о культуре народов России</h1>
+            <p class="subtitle">Интеллектуальный помощник для учителей и студентов педагогических вузов</p>
+        </div>
+    </header>
+
+    <div class="container layout">
+        <main class="form-block card">
+            <h2><i class="fa-solid fa-sliders"></i> Параметры сценария</h2>
+            <form id="generator-form" onsubmit="event.preventDefault(); generate();">
+                
+                <div class="form-group full-width">
+                    <label><i class="fa-solid fa-pen-nib"></i> Тема мероприятия</label>
+                    <input type="text" id="theme" placeholder="Например: Легенды народов Кавказа, Сказки Севера..." required>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label><i class="fa-solid fa-users"></i> Для кого</label>
+                        <select id="audience" required>
+                            <option value="Начальная школа (1-4 класс)">Начальная школа</option>
+                            <option value="Средние классы (5-8 класс)">Средние классы</option>
+                            <option value="Старшие классы (9-11 класс)">Старшие классы</option>
+                            <option value="Студенты вуза">Студенты вуза</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label><i class="fa-solid fa-user-group"></i> Участники</label>
+                        <select id="people" required>
+                            <option value="До 10 человек">До 10 человек (Малая группа)</option>
+                            <option value="До 25 человек">До 25 человек (Класс)</option>
+                            <option value="До 50 человек">До 50 человек (Поток)</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label><i class="fa-regular fa-clock"></i> Длительность</label>
+                        <select id="duration" required>
+                            <option value="15 минут">15 минут</option>
+                            <option value="30 минут">30 минут</option>
+                            <option value="45 минут (целый урок)">45 минут (целый урок)</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label><i class="fa-solid fa-chalkboard-user"></i> Опыт ведущего</label>
+                        <select id="experience" required>
+                            <option value="Нет опыта (впервые)">Провожу впервые</option>
+                            <option value="Есть базовый опыт">Есть базовый опыт</option>
+                            <option value="Опытный преподаватель">Опытный педагог</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label><i class="fa-solid fa-venus-mars"></i> Пол выступающего</label>
+                        <select id="gender" required>
+                            <option value="Не имеет значения">Не важно</option>
+                            <option value="Мужской">Мужской</option>
+                            <option value="Женский">Женский</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group full-width">
+                    <label><i class="fa-solid fa-toolbox"></i> Подручные вещи / интерактивы</label>
+                    <input type="text" id="tools" placeholder="Смартфоны, интерактивная доска, Kahoot, карточки..." required>
+                </div>
+
+                <button type="submit" class="btn-main" id="submit-btn">
+                    <i class="fa-solid fa-wand-magic-sparkles"></i> Создать план мероприятия
+                </button>
+            </form>
+        </main>
+
+        <aside class="history-block card">
+            <div class="history-header">
+                <h2><i class="fa-solid fa-clock-rotate-left"></i> История</h2>
+                <button class="clear-btn" onclick="clearHistory()" title="Очистить историю"><i class="fa-solid fa-trash"></i></button>
+            </div>
+            <div id="history-list" class="history-list">
+                </div>
+        </aside>
+    </div>
+
+    <div class="container">
+        <div id="loader" class="loader hidden">
+            <div class="spinner"></div>
+            <p>Нейросеть готовит уникальный сценарий...</p>
+        </div>
+
+        <div id="result-container" class="result-container hidden card">
+            <div class="result-actions">
+                <span class="result-badge">Сгенерированный сценарий</span>
+                <button onclick="window.print()" class="print-btn"><i class="fa-solid fa-print"></i> Печать</button>
+            </div>
+            <div id="result" class="markdown-body"></div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
