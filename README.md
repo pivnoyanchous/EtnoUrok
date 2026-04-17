@@ -51,3 +51,5 @@ const API_KEY = "KEY-HERE";
 ```
 node server.js
 ```
+## 🎨 Дизайн и UX
+Интерфейс выполнен в современной светлой стилистике с использованием шрифтов Inter и Playfair Display.
